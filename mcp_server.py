@@ -149,3 +149,9 @@ class JSONPlaceholderMCPServer:
                         type="text",
                         text=f"Error fetching comments: {str(e)}"
                     )]
+                    
+# Main server runner
+async def main():
+    server_instance = JSONPlaceholderMCPServer()
+    async with stdio_server() as (read_stream, write_stream):
+        await server_instance.server.run(read_stream, write_stream)
